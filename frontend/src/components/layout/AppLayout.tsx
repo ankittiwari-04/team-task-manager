@@ -193,9 +193,16 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                     transition={{ duration: 0.2 }}
                     className="absolute right-0 mt-2 w-56 rounded-2xl border border-border/50 glass shadow-2xl py-2"
                   >
-                    <div className="px-4 py-2 mb-2 border-b border-border/50">
-                      <p className="text-sm font-semibold text-foreground truncate">{user?.name}</p>
-                      <p className="text-xs text-muted-foreground truncate">{user?.email}</p>
+                    <div className="flex items-center justify-between px-4 py-2 mb-2 border-b border-border/50">
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <p className="text-sm font-semibold text-foreground truncate">{user?.name}</p>
+                          <span className={`px-1.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${user?.role === Role.ADMIN ? 'bg-indigo-500/10 text-indigo-500' : 'bg-gray-500/10 text-gray-500'}`}>
+                            {user?.role}
+                          </span>
+                        </div>
+                        <p className="text-xs text-muted-foreground truncate">{user?.email}</p>
+                      </div>
                     </div>
                     <div className="px-2 space-y-1">
                       <button type="button" onClick={() => navigate('/profile')} className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-secondary/80 transition-colors"><UserRound className="h-4 w-4" />Profile Settings</button>

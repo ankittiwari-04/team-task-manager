@@ -27,20 +27,20 @@ export default function KanbanCard({ task, index, draggableId }: { task: Task; i
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           onClick={() => navigate(`/projects/${task.projectId}/tasks/${task.id}`)}
-          className="mb-2 cursor-pointer rounded-lg bg-white p-3 shadow-sm transition hover:shadow-md dark:bg-gray-900"
+          className="mb-3 cursor-pointer rounded-xl glass-card border border-border/50 bg-white/80 p-4 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md hover:border-primary/30 dark:bg-gray-900/80 group"
         >
           <div className="flex items-start justify-between gap-2">
-            <h4 className="line-clamp-2 text-sm font-medium">{task.title}</h4>
+            <h4 className="line-clamp-2 text-sm font-semibold text-foreground group-hover:text-primary transition-colors">{task.title}</h4>
             <PriorityBadge priority={task.priority} />
           </div>
-          {dueDate && <div className={`mt-3 flex items-center gap-1 text-xs ${dueClass}`}><Clock className="h-3.5 w-3.5" />{dueText || format(dueDate, 'MMM d')}</div>}
-          <div className="mt-3 flex flex-wrap gap-1">
-            {task.tags.slice(0, 2).map((tag) => <span key={tag} className="rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-600 dark:bg-gray-800 dark:text-gray-300">{tag}</span>)}
-            {task.tags.length > 2 && <span className="text-xs text-gray-500">+{task.tags.length - 2} more</span>}
+          {dueDate && <div className={`mt-3 flex items-center gap-1.5 text-xs font-medium ${dueClass}`}><Clock className="h-3.5 w-3.5" />{dueText || format(dueDate, 'MMM d')}</div>}
+          <div className="mt-3 flex flex-wrap gap-1.5">
+            {task.tags.slice(0, 2).map((tag) => <span key={tag} className="rounded-md bg-secondary/80 px-2 py-0.5 text-[10px] font-semibold tracking-wide uppercase text-secondary-foreground">{tag}</span>)}
+            {task.tags.length > 2 && <span className="text-[10px] font-semibold text-muted-foreground">+{task.tags.length - 2}</span>}
           </div>
-          <div className="mt-4 flex items-center justify-between">
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-100 text-xs font-semibold text-indigo-700">{initials(task.assignee?.name)}</div>
-            <div className="flex items-center gap-1 text-xs text-gray-500"><MessageCircle className="h-3.5 w-3.5" />{task.commentCount ?? 0}</div>
+          <div className="mt-4 flex items-center justify-between border-t border-border/30 pt-3">
+            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-primary/10 text-[10px] font-bold text-primary ring-2 ring-background">{initials(task.assignee?.name)}</div>
+            <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors"><MessageCircle className="h-4 w-4" />{task.commentCount ?? 0}</div>
           </div>
         </div>
       )}
