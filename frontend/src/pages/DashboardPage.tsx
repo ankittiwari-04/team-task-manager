@@ -1,7 +1,8 @@
 import { AlertCircle, CheckCheck, CheckCircle, FolderKanban, Clock, Sparkles } from 'lucide-react';
-import { formatDistanceToNow, isToday, isBefore } from 'date-fns';
+import { isToday, isBefore } from 'date-fns';
 import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { motion } from 'framer-motion';
+import type { Variants } from 'framer-motion';
 import EmptyState from '../components/common/EmptyState';
 import PriorityBadge from '../components/common/PriorityBadge';
 import { useAuth } from '../context/AuthContext';
@@ -16,7 +17,7 @@ const statusLabels: Record<TaskStatus, string> = {
   [TaskStatus.DONE]: 'Done'
 };
 
-const container = {
+const container: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
@@ -24,9 +25,9 @@ const container = {
   }
 };
 
-const item = {
+const item: Variants = {
   hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }
+  show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 300, damping: 24 } }
 };
 
 export default function DashboardPage() {
