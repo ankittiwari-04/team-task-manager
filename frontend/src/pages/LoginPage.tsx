@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { CheckSquare, ArrowRight, Loader2 } from 'lucide-react';
+import { toast } from 'react-hot-toast';
 import { useAuth } from '../context/AuthContext';
 
 export default function LoginPage() {
@@ -74,9 +75,11 @@ export default function LoginPage() {
                 setLoading(true); 
                 try {
                   await login(email, password); 
+                  toast.success('Successfully logged in!');
                   navigate('/dashboard'); 
-                } catch (error) {
+                } catch (error: any) {
                   console.error(error);
+                  toast.error(error.response?.data?.message || 'Invalid email or password. Please try again or create an account.');
                 } finally {
                   setLoading(false); 
                 }
