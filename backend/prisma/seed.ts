@@ -98,8 +98,10 @@ async function main() {
 
 main()
   .then(() => {
-    console.log('Seed complete.');
-    console.log('Admin: admin@demo.com / Admin123!');
+    process.stdout.write('Seed complete.\n');
   })
-  .catch(console.error)
+  .catch((e) => {
+    process.stderr.write(e.message);
+    process.exit(1);
+  })
   .finally(() => prisma.$disconnect());
