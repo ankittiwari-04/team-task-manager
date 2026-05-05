@@ -5,6 +5,7 @@
     "module": "commonjs",
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "strict": false
+    "strict": false,
+    "types": ["node"]
   }
 }
