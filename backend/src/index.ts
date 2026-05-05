@@ -9,6 +9,7 @@ import notificationRoutes from './routes/notification.routes';
 import projectRoutes from './routes/project.routes';
 import taskRoutes from './routes/task.routes';
 import userRoutes from './routes/user.routes';
+import { seedDatabase } from './controllers/seed.controller';
 import { errorHandler } from './middleware/error.middleware';
 
 dotenv.config();
@@ -28,6 +29,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/health', (_req, res) => res.json({ status: 'ok', timestamp: new Date().toISOString() }));
+app.get('/api/seed', seedDatabase);
 app.use('/api/auth', authRoutes);
 app.use('/api/projects', projectRoutes);
 app.use('/api/tasks', taskRoutes);
