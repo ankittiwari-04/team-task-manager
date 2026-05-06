@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Ask a Question
+    url: https://github.com/ankittiwari-04/team-task-manager/discussions
+    about: Use GitHub Discussions for questions and support
