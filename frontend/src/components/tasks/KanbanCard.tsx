@@ -35,8 +35,8 @@ export default function KanbanCard({ task, index, draggableId }: { task: Task; i
           </div>
           {dueDate && <div className={`mt-3 flex items-center gap-1.5 text-xs font-medium ${dueClass}`}><Clock className="h-3.5 w-3.5" />{dueText || format(dueDate, 'MMM d')}</div>}
           <div className="mt-3 flex flex-wrap gap-1.5">
-            {task.tags.slice(0, 2).map((tag) => <span key={tag} className="rounded-md bg-secondary/80 px-2 py-0.5 text-[10px] font-semibold tracking-wide uppercase text-secondary-foreground">{tag}</span>)}
-            {task.tags.length > 2 && <span className="text-[10px] font-semibold text-muted-foreground">+{task.tags.length - 2}</span>}
+            {(task.tags || []).slice(0, 2).map((tag) => <span key={tag} className="rounded-md bg-secondary/80 px-2 py-0.5 text-[10px] font-semibold tracking-wide uppercase text-secondary-foreground">{tag}</span>)}
+            {(task.tags || []).length > 2 && <span className="text-[10px] font-semibold text-muted-foreground">+{(task.tags || []).length - 2}</span>}
           </div>
           <div className="mt-4 flex items-center justify-between border-t border-border/30 pt-3">
             <div className="flex h-7 w-7 items-center justify-center rounded-full bg-primary/10 text-[10px] font-bold text-primary ring-2 ring-background">{initials(task.assignee?.name)}</div>

@@ -2,6 +2,7 @@ import { AlertCircle, CheckCheck, CheckCircle, FolderKanban, Clock, Sparkles } f
 import { isToday, isBefore } from 'date-fns';
 import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import type { Variants } from 'framer-motion';
 import EmptyState from '../components/common/EmptyState';
 import PriorityBadge from '../components/common/PriorityBadge';
@@ -199,9 +200,9 @@ export default function DashboardPage() {
                     </div>
                   ))}
                   {tasks.length >= 4 && (
-                    <a href="/dashboard?filter=mine" className="flex items-center justify-center w-full py-2 text-xs font-semibold text-primary hover:bg-primary/5 rounded-lg transition-colors">
-                      View all {tasks.length} tasks
-                    </a>
+                    <Link to="/projects" className="flex items-center justify-center w-full py-2 text-xs font-semibold text-primary hover:bg-primary/5 rounded-lg transition-colors">
+                      View all projects
+                    </Link>
                   )}
                   {tasks.length === 0 && (
                     <div className="py-6 text-center text-xs text-muted-foreground border-2 border-dashed border-border rounded-lg">

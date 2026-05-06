@@ -131,6 +131,29 @@ export default function LoginPage() {
               </button>
             </form>
 
+            <div className="mt-6 flex flex-col gap-3">
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center"><span className="w-full border-t border-border" /></div>
+                <div className="relative flex justify-center text-xs uppercase font-semibold tracking-wider"><span className="bg-white dark:bg-gray-950 px-2 text-muted-foreground">Or test with</span></div>
+              </div>
+              <div className="grid grid-cols-2 gap-3 mt-2">
+                <button 
+                  type="button"
+                  onClick={() => { setEmail('admin@demo.com'); setPassword('Admin123!'); }}
+                  className="flex items-center justify-center rounded-lg border border-indigo-200 bg-indigo-50 dark:border-indigo-900/50 dark:bg-indigo-900/20 px-4 py-2 text-xs font-semibold text-indigo-700 dark:text-indigo-300 hover:bg-indigo-100 dark:hover:bg-indigo-900/40 transition-colors"
+                >
+                  Demo Manager
+                </button>
+                <button 
+                  type="button"
+                  onClick={() => { setEmail('sarah@demo.com'); setPassword('Member123!'); }}
+                  className="flex items-center justify-center rounded-lg border border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-900 px-4 py-2 text-xs font-semibold text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                >
+                  Demo Employee
+                </button>
+              </div>
+            </div>
+
             <div className="mt-8 text-center text-sm text-muted-foreground">
               Don't have an account?{' '}
               <Link to="/register" className="font-semibold text-primary hover:text-primary/80 transition-colors">
