@@ -25,7 +25,7 @@ export default function ProjectCard({
   const progress = project.progress ?? (total ? Math.round((completed / total) * 100) : 0);
   const dueDate = project.dueDate ? new Date(project.dueDate) : null;
   const isOverdue = dueDate ? isBefore(dueDate, new Date()) : false;
-  const members = project.members?.map((member) => ({ name: member.user.name, avatar: member.user.avatar })) ?? [];
+  const members = project.members?.map((member) => ({ name: member.user?.name || 'Unknown', avatar: member.user?.avatar })) ?? [];
 
   const stop = (event: React.MouseEvent) => event.stopPropagation();
 

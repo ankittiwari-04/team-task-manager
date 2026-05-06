@@ -28,7 +28,7 @@ export const getProjects = async (req: AuthRequest, res: Response) => {
       isArchived: archived,
       OR: [{ ownerId: req.user!.id }, { members: { some: { userId: req.user!.id } } }]
     },
-    include: { members: true, tasks: true }
+    include: { members: { include: { user: true } }, tasks: true }
   });
   const data = projects.map((p: any) => {
     const total = p.tasks.length;
