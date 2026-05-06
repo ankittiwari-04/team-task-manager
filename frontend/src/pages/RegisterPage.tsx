@@ -9,6 +9,7 @@ export default function RegisterPage() {
   const navigate = useNavigate();
   const [form, setForm] = useState({ name: '', email: '', password: '' });
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   return (
     <div className="min-h-screen w-full flex bg-background">
@@ -44,16 +45,23 @@ export default function RegisterPage() {
               onSubmit={async (e) => { 
                 e.preventDefault(); 
                 setLoading(true);
+                setError('');
                 try {
                   await register(form.name, form.email, form.password); 
                   navigate('/dashboard'); 
-                } catch (error) {
-                  console.error(error);
+                } catch (err: any) {
+                  setError(err.response?.data?.message || 'Failed to register. Please try again.');
+                  console.error(err);
                 } finally {
                   setLoading(false);
                 }
               }}
             >
+              {error && (
+                <div className="p-3 text-sm text-red-500 bg-red-500/10 border border-red-500/20 rounded-xl">
+                  {error}
+                </div>
+              )}
               <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-1.5" htmlFor="name">Full Name</label>
@@ -84,10 +92,11 @@ export default function RegisterPage() {
                     id="password"
                     className="w-full rounded-xl border border-border bg-background/50 px-4 py-3 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/20 hover:border-border/80" 
                     type="password" 
-                    placeholder="Create a strong password"
+                    placeholder="Create a strong password (min 8 chars)"
                     value={form.password} 
                     onChange={(e) => setForm({ ...form, password: e.target.value })} 
                     required
+                    minLength={8}
                   />
                 </div>
               </div>

@@ -19,7 +19,8 @@ export const register = async (req: AuthRequest, res: Response) => {
   const password = await bcrypt.hash(parsed.password, 12);
   const user = await prisma.user.create({ data: { ...parsed, password } });
   const token = generateToken({ id: user.id, email: user.email, role: user.role });
-  return res.status(201).json({ token, user: sanitize(user) });
+  const refreshToken = generateRefreshToken({ id: user.id });
+  return res.status(201).json({ token, refreshToken, user: sanitize(user) });
 };
 
 export const login = async (req: AuthRequest, res: Response) => {
